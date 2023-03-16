@@ -30,9 +30,10 @@ const deleteConversation = async (req, res, next) => {
   }
 };
 
-const getAllConversation = async (req, res, next) => {
+const getConversation = async (req, res, next) => {
   try {
-    const result = await ConversationsService.getAllConversation();
+    const { id } = req.params;
+    const result = await ConversationsService.getConversation(id);
     res.status(200).json(result);
   } catch (error) {
     next(error);
@@ -43,5 +44,5 @@ module.exports = {
   createConversationPrivate,
   createConversationGroup,
   deleteConversation,
-  getAllConversation,
+  getConversation,
 };

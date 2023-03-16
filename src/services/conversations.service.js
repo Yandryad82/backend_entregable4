@@ -58,18 +58,38 @@ class ConversationsService {
     }
   }
 
-  static async getAllConversation(){
+  static async getConversation(id){
     try {
       const conversations = await Conversations.findAll({
+        where: {
+          id: id
+        },
         attributes: ["id", "title", "isGroup"],
         include: [{
           model: Users,
           attributes: ["username"],
          },
+         {
+          model: Participants,
+          attributes: ["userId"],
+          include: {
+            model: Users,
+            attributes: ["username"],
+          }
+         },
+         {
+          model: Users,
+          attributes: ["username"],
+         },
           {
             model: Messages,
-            attributes: ["content" ],
-          }
+            attributes: ["authorId","content" ],
+            include: {
+              model: Users,
+              attributes: ["username"],
+            } 
+          },
+          
         ]
       });
       return conversations;
