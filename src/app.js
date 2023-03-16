@@ -6,6 +6,7 @@ const initModels = require('./models/initModels');
 const userRoutes = require('./routes/users.route');
 const conversationRoutes = require('./routes/conversations.route');
 const messagesRoutes = require('./routes/messages.route');
+const authRoutes = require('./routes/auth.route');
 const errorHandlerRouter = require('./routes/errorHandler.route');
 
 
@@ -32,6 +33,7 @@ db.authenticate()
   app.use(userRoutes);
   app.use(conversationRoutes);
   app.use(messagesRoutes);
+  app.use(authRoutes);
   
 
 app.get('/', (req, res) => {

@@ -2,9 +2,10 @@ const Users = require('../models/users.model');
 const Conversations = require('../models/conversations.model');
 
 class UsersService {
+  
   static async getUser(email) {
     try {
-      // SELECT * FROM users where email = email
+      
       const user = await Users.findOne({
         where: { email },
       });
