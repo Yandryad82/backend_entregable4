@@ -20,11 +20,14 @@ const userLogin = async (req, res, next) => {
         error: 'Invalid password'
       });
     }
+    const {
+      id,
+      firstname,
+      lastname,
+      email: userEmail,
+    } = user;
     res.json({
-      email: user.email,
-      username: user.username,
-      firstname: user.firstname,
-      lastname: user.lastname,
+      id, firstname, lastname, email: userEmail
     });
   } catch (error) {
     next(error)
